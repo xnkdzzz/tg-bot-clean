@@ -1,2 +1,5 @@
 pyTelegramBotAPI
 python-dotenv
+beautifulsoup4
+aiogram==3.5.0
+requests
