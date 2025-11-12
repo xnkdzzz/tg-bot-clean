@@ -8,7 +8,9 @@ from threading import Thread
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
 # === НАСТРОЙКИ ===
-BOT_TOKEN = "8591671306:AAEcPay5f5o9U-78iR1BBXhZVhf_2SQS2Dk"
+BOT_TOKEN = os.getenv("BOT_TOKEN")  # ✅ токен берём из Environment Variables
+bot = telebot.TeleBot(BOT_TOKEN)
+
 KRISHA_URL = "https://krisha.kz/prodazha/doma-dachi/zharkent/?bounds=&lat=44.21512&lon=80.21276&areas=p44.202342,80.192335,44.203823,80.186842,44.208516,80.181864,44.218887,80.179632,44.228268,80.187872,44.236167,80.200918,44.237772,80.208643,44.236414,80.221518,44.219627,80.243490,44.212714,80.245894,44.208145,80.243147,44.198266,80.232161,44.193820,80.221003,44.192462,80.208986,44.193697,80.197313,44.198390,80.189417,44.203823,80.186499,44.202342,80.192335&zoom=13"  # продаются дома в Жаркенте
 USER_AGENT = "Mozilla/5.0 (compatible; KrishaNotifier/1.0; +https://github.com/)"
 SEEN_FILE = "seen.json"
