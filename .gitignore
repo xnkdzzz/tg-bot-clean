@@ -1,5 +1,12 @@
+# Виртуальное окружение
 .venv/
-.venv/
-.venv/
-.venv/
-.venv/
+
+# Python кеш
+__pycache__/
+*.pyc
+
+# Секреты
+.env
+
+# Системные файлы
+.DS_Store
