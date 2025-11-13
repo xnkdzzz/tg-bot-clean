@@ -7,6 +7,7 @@ from bs4 import BeautifulSoup
 from threading import Thread
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
 
+
 # === НАСТРОЙКИ ===
 BOT_TOKEN = os.getenv("BOT_TOKEN")  # ✅ токен берём из Environment Variables
 bot = telebot.TeleBot(BOT_TOKEN)
@@ -143,5 +144,24 @@ def stop_command(message):
 # === ЗАПУСК ===
 if __name__ == "__main__":
     print("🚀 Бот запущен и отслеживает объявления...")
+
+    # 🔹 Запускаем поток проверки объявлений
     Thread(target=check_new_ads, daemon=True).start()
+
+    # 🔹 Чтобы Render видел открытый порт (иначе deploy не завершится)
+    import threading
+    import http.server
+    import socketserver
+    import os
+
+    PORT = int(os.environ.get("PORT", 10000))
+
+    def run_web_server():
+        handler = http.server.SimpleHTTPRequestHandler
+        with socketserver.TCPServer(("", PORT), handler) as httpd:
+            print(f"🌍 Web server running on port {PORT}")
+            httpd.serve_forever()
+
+    # 🔹 Запускаем Telegram-бот и HTTP-сервер параллельно
+    threading.Thread(target=run_web_server, daemon=True).start()
     bot.infinity_polling()
