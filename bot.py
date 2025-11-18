@@ -6,7 +6,8 @@ import telebot
 from bs4 import BeautifulSoup
 from threading import Thread
 from telebot.types import ReplyKeyboardMarkup, KeyboardButton
-
+from keep_alive import keep_alive
+keep_alive()
 
 # === НАСТРОЙКИ ===
 BOT_TOKEN = os.getenv("BOT_TOKEN")  # ✅ токен берём из Environment Variables
